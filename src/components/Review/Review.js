@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
 
@@ -14,11 +15,25 @@ function Review(){
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('in handleSubmit for review')
-        dispatch({
-            type: 'SUBMIT_FEEDBACK'
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                feeling,
+                understanding,
+                supported,
+                comments
+            }
         })
-        history.push('/')
+        .then((response) => {
+            console.log('in axios post.then', response);
+            history.push('/')
+        })
+        .catch((err) => {
+            console.log('in axios post catch error in post',err)
+        })
     }
+    
 
     return(
         <>

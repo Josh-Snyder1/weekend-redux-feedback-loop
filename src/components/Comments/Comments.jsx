@@ -8,7 +8,7 @@ function Comments(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in handleSubmit', document.getElementById("comments_input").value);
+        console.log('in handleSubmit comments', document.getElementById("comments_input").value);
         dispatch({
             type: 'UPDATE_COMMENTS',
             payload: 
